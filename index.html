@@ -141,7 +141,7 @@
 							<div>
 								<section>
 									<h2>Get in touch</h2>
-									<form id="contact-form">
+									<form id="form">
 										<div class="fields">
 											<div class="field half">
 												<input type="text" name="name" id="name" placeholder="Name" />
@@ -154,23 +154,40 @@
 											</div>
 										</div>
 										<ul class="actions">
-											<li><input type="submit" value="Send" class="primary" /></li>
+											<li><input type="submit" value="Send Email" class="primary" /></li>
 											<li><input type="reset" value="Reset" /></li>
 										</ul>
 									</form>
+
+									<script type="text/javascript"
+										src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+									</script>
+
+									<script type="text/javascript">
+										emailjs.init('xtO6t5ZIqPTrIMXEt')
+									</script>
+
 									<script>
-										emailjs.init('xtO6t5ZIqPTrIMXEt'); // EmailJS user ID
-									  
-										document.getElementById('contactForm').addEventListener('submit', function (event) {
-										  event.preventDefault();
-									  
-										  const serviceID = 'default_service';
-										  const templateID = 'template_s5dpc7p'; // template ID
-									  
-										  emailjs.sendForm(serviceID, templateID, this)
-											.then(() => alert('Message sent!'))
-											.catch(error => alert('Failed to send the message: ' + error));
-										});
+const btn = document.getElementById('button');
+
+document.getElementById('form')
+ .addEventListener('submit', function(event) {
+   event.preventDefault();
+
+   btn.value = 'Sending...';
+
+   const serviceID = 'default_service';
+   const templateID = 'template_s5dpc7p';
+
+   emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      btn.value = 'Send Email';
+      alert('Sent!');
+    }, (err) => {
+      btn.value = 'Send Email';
+      alert(JSON.stringify(err));
+    });
+});
 									  </script>
 								</section>
 							</div>
