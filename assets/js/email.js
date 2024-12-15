@@ -4,6 +4,9 @@ function sendMail() {
         email: document.getElementById("email").value ,
         message: document.getElementById("message").value ,
     }
+
+    event.preventDefault();
+
     const serviceID = "service_ntxvl2v";
     const templateID = "template_s5dpc7p";
 
