@@ -149,8 +149,10 @@
   
 	  const serviceID = 'default_service';
 	  const templateID = 'template_s5dpc7p';
+
+	  const formData = new FormData(form);
   
-	  emailjs.sendForm(serviceID, templateID, this)
+	  emailjs.sendForm(serviceID, templateID, formData)
 		.then(() => alert('Message sent!'))
 		.catch(error => alert('Failed to send the message: ' + error));
 	});
